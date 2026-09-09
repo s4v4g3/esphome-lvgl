@@ -1,25 +1,27 @@
 sensor:
 
-  # Header Outdoor Temperate
+  # Downstairs Temperature / Humidity
   - platform: homeassistant
-    entity_id: sensor.upstairs_humidity
-    id: upstairs_humidity
+    entity_id: sensor.downstairs_humidity
+    id: downstairs_humidity
+    trigger_on_initial_state: true
     on_value:
       - lvgl.label.update:
           id: temperatures
           text:
             format: "%d° / %d%%"
-            args: [ '(int)round(id(upstairs_temperature).state)', '(int)round(x)' ]
+            args: [ '(int)round(id(downstairs_temperature).state)', '(int)round(x)' ]
 
   - platform: homeassistant
-    entity_id: sensor.upstairs_temperature
-    id: upstairs_temperature
+    entity_id: sensor.downstairs_temperature
+    id: downstairs_temperature
+    trigger_on_initial_state: true
     on_value:
       - lvgl.label.update:
           id: temperatures
           text:
             format: "%d° / %d%%"
-            args: [ '(int)round(x)', '(int)round(id(upstairs_humidity).state)' ]
+            args: [ '(int)round(x)', '(int)round(id(downstairs_humidity).state)' ]
 
 
   # Office Blind Position
@@ -30,13 +32,18 @@ sensor:
 
 
 
-
-
 binary_sensor:
 
-
-
-
+  # Big Door open
+  - platform: homeassistant
+    id: big_door_open
+    entity_id: cover.big_door
+    on_value:
+      then:
+        lvgl.widget.update:
+          id: big_door_open_button
+          state:
+            checked: !lambda return x == 'open';
 
   # Office Features Scene
   - platform: homeassistant

@@ -66,4 +66,20 @@ lvgl:
                   data:
                     entity_id: switch.office_features_stateful_scene
 
+        # Big Door open
+        - button: 
+            height: $button_height
+            width: $button_width
+            checkable: true
+            id: big_door_open_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: Big Garage Door
+              - label:
+                  align: bottom_left
+                  text: "Open"
+
         
