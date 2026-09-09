@@ -37,7 +37,7 @@ binary_sensor:
     id: big_door_open
     entity_id: cover.big_door
     trigger_on_initial_state: true
-    on_value:
+    on_state:
       then:
         lvgl.widget.update:
           id: big_door_open_button
