@@ -77,9 +77,25 @@ lvgl:
               - label:
                   text_font: $icon_font
                   align: top_left
-                  text: Big Garage Door
+                  text: $garage_open
               - label:
                   align: bottom_left
-                  text: "Open"
+                  text: "Big Door Open"
+
+        # Big Door closed
+        - button: 
+            height: $button_height
+            width: $button_width
+            checkable: true
+            id: big_door_closed_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $garage_closed
+              - label:
+                  align: bottom_left
+                  text: "Big Door Closed"
 
         

@@ -22,6 +22,8 @@ font:
       "\U000F089E",  # mdi-battery
       "\U000F07DE",  # mdi-filament
       "\U000F0317",  # mdi-lan
+      "\U000F06DA",  # mdi-garage-open
+      "\U000F06D9",  # mdi-garage
       ]
 
 # Map icons to names
@@ -42,4 +44,6 @@ substitutions:
   battery:        "\U000F089E"
   filament:       "\U000F07DE"
   lan:            "\U000F0317"
+  garage_open:    "\U000F06DA"
+  garage_closed:  "\U000F06D9"
 

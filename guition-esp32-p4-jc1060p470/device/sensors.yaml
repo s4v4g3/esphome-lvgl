@@ -44,6 +44,18 @@ binary_sensor:
           state:
             checked: !lambda return x == 'open';
 
+  # Big Door closed
+  - platform: homeassistant
+    id: big_door_closed
+    entity_id: cover.big_door
+    trigger_on_initial_state: true
+    on_state:
+      then:
+        lvgl.widget.update:
+          id: big_door_closed_button
+          state:
+            checked: !lambda return x != 'open';
+
   # Office Features Scene
   - platform: homeassistant
     id: office_scene_features
