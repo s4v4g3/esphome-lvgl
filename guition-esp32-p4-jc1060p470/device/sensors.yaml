@@ -43,7 +43,10 @@ text_sensor:
     on_value:
       - lvgl.label.update:
           id: hvac_mode_label
-          text: !lambda return x.upper();
+          text: !lambda |-
+            if (x == "heat") return "HEAT";
+            if (x == "off") return "OFF";
+            return x;
       - lvgl.widget.update:
           id: heat_mode_button
           state:
