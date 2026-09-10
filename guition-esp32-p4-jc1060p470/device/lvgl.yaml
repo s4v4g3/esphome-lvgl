@@ -1,21 +1,16 @@
 lvgl:
   displays: my_display
   byte_order: little_endian
-  
+
   top_layer:
     widgets:
-    
-      # Temperature
       - label:
-          text: "-° / -°"
-          id: temperatures
+          text: "BBQ PIT"
           text_font: clockbar_font
           align: top_left
-          x: 8
+          x: 12
           y: 8
           text_color: 0xFFFFFF
-
-      # Clock
       - label:
           text: "--:--"
           id: display_time
@@ -25,77 +20,144 @@ lvgl:
           y: 8
           text_align: center
           text_color: 0xFFFFFF
-          
+
   pages:
     - id: main_page
-      layout: 
+      layout:
         type: flex
-        flex_flow: column_wrap
-        pad_row: 10
-        pad_column: 10
+        flex_flow: column
       width: 100%
-      bg_color: Black
+      height: 100%
+      bg_color: 0x20252B
       bg_opa: cover
-      pad_top: 42
-      pad_bottom: 5
-      pad_left: 5
-      pad_right: 5
-      
+      scrollbar_mode: "off"
       widgets:
-      
-        # Office Features Scene
-        - button: 
-            height: $button_height
-            width: $button_width
-            checkable: true
-            id: office_scene_features_button
-            styles: control
+        - obj:
+            id: bbq_panel
+            width: 100%
+            height: 100%
+            bg_opa: TRANSP
+            border_width: 0
+            pad_all: 0
             widgets:
               - label:
-                  text_font: $icon_font
-                  align: top_left
-                  id: scene_features_icon                
-                  text: $ledstrip
+                  id: hvac_mode_label
+                  text: "off"
+                  text_font: label_font
+                  text_color: 0xAEB8C2
+                  align: top_mid
+                  y: 62
+              - arc:
+                  id: target_temperature_arc
+                  x: 272
+                  y: 92
+                  width: 430px
+                  height: 430px
+                  min_value: 0
+                  max_value: 300
+                  value: 110
+                  start_angle: 135
+                  end_angle: 45
+                  arc_width: 18
+                  arc_color: 0x3B444D
+                  indicator:
+                    arc_color: 0xE58A32
+                    arc_width: 18
+                  knob:
+                    bg_color: 0xFFFFFF
+                  on_value:
+                    - homeassistant.service:
+                        service: climate.set_temperature
+                        data:
+                          entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+                          hvac_mode: heat
+                          temperature: !lambda return x;
+              - arc:
+                  id: pit_temperature_arc
+                  x: 272
+                  y: 92
+                  width: 430px
+                  height: 430px
+                  min_value: 0
+                  max_value: 300
+                  value: 0
+                  start_angle: 135
+                  end_angle: 45
+                  arc_width: 0
+                  arc_color: 0x000000
+                  indicator:
+                    arc_color: 0x8CA0AE
+                    arc_width: 5
+                  knob:
+                    bg_color: 0x8CA0AE
+                  clickable: false
               - label:
-                  align: bottom_left
-                  id: scene_features_label
-                  text: "Features"
-            on_press:
-              - homeassistant.service:
-                  service: switch.toggle
-                  data:
-                    entity_id: switch.office_features_stateful_scene
-
-        # Big Door open
-        - button: 
-            height: $button_height
-            width: $button_width
-            checkable: true
-            id: big_door_open_button
-            styles: control
-            widgets:
+                  id: target_temperature_label
+                  text: "--.-°"
+                  text_font: statistics_font
+                  text_color: 0xFFFFFF
+                  align: center
+                  y: 6
               - label:
-                  text_font: $icon_font
-                  align: top_left
-                  text: $garage_open
+                  id: pit_temperature_label
+                  text: "--.-°"
+                  text_font: label_font
+                  text_color: 0x64D6C5
+                  align: center
+                  y: 72
               - label:
-                  align: bottom_left
-                  text: "Big Door Open"
-
-        # Big Door closed
-        - button: 
-            height: $button_height
-            width: $button_width
-            checkable: true
-            id: big_door_closed_button
-            styles: control
-            widgets:
+                  text: "PIT"
+                  text_font: clockbar_font
+                  text_color: 0x8CA0AE
+                  x: 95
+                  y: 185
               - label:
-                  text_font: $icon_font
-                  align: top_left
-                  text: $garage_closed
+                  id: fan_output_label
+                  text: "--%"
+                  text_font: statistics_font
+                  text_color: 0x64D6C5
+                  x: 790
+                  y: 220
               - label:
-                  align: bottom_left
-                  text: "Big Door Closed"
-
-        
+                  text: "FAN"
+                  text_font: clockbar_font
+                  text_color: 0x8CA0AE
+                  x: 802
+                  y: 285
+              - button:
+                  id: off_mode_button
+                  x: 340
+                  y: 530
+                  width: 150px
+                  height: 55px
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        text: $power
+                        align: center
+                  on_click:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+                          hvac_mode: off
+              - button:
+                  id: heat_mode_button
+                  x: 534
+                  y: 530
+                  width: 150px
+                  height: 55px
+                  checkable: true
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        text: $fire
+                        align: center
+                  on_click:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+                          hvac_mode: heat

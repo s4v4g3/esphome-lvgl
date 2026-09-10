@@ -24,6 +24,8 @@ font:
       "\U000F0317",  # mdi-lan
       "\U000F06DA",  # mdi-garage-open
       "\U000F06D9",  # mdi-garage
+      "\U000F0238",  # mdi-fire
+      "\U000F0210",  # mdi-fan
       ]
 
 # Map icons to names
@@ -46,4 +48,6 @@ substitutions:
   lan:            "\U000F0317"
   garage_open:    "\U000F06DA"
   garage_closed:  "\U000F06D9"
+  fire:           "\U000F0238"
+  fan:            "\U000F0210"
 

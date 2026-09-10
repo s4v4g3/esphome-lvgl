@@ -1,87 +1,50 @@
 sensor:
-
-  # Downstairs Temperature / Humidity
   - platform: homeassistant
-    entity_id: sensor.downstairs_humidity
-    id: downstairs_humidity
+    entity_id: sensor.bbq_esphome_esphome_bbq_pit_temperature
+    id: bbq_pit_temperature
     on_value:
       - lvgl.label.update:
-          id: temperatures
+          id: pit_temperature_label
           text:
-            format: "%d° / %d%%"
-            args: [ '(int)round(id(downstairs_temperature).state)', '(int)round(x)' ]
+            format: "%.1f°"
+            args: [ 'x' ]
+      - lvgl.arc.update:
+          id: pit_temperature_arc
+          value: !lambda return (int)roundf(x);
 
   - platform: homeassistant
-    entity_id: sensor.downstairs_temperature
-    id: downstairs_temperature
+    entity_id: sensor.bbq_esphome_esphome_bbq_pit_fan_output
+    id: bbq_fan_output
     on_value:
       - lvgl.label.update:
-          id: temperatures
+          id: fan_output_label
           text:
-            format: "%d° / %d%%"
-            args: [ '(int)round(x)', '(int)round(id(downstairs_humidity).state)' ]
+            format: "%.0f%%"
+            args: [ 'x' ]
 
-
-  # Office Blind Position
   - platform: homeassistant
-    entity_id: cover.office_blind
-    id: office_blind_position
-    attribute: current_position
+    entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+    id: bbq_target_temperature
+    attribute: temperature
+    on_value:
+      - lvgl.label.update:
+          id: target_temperature_label
+          text:
+            format: "%.1f°"
+            args: [ 'x' ]
+      - lvgl.arc.update:
+          id: target_temperature_arc
+          value: !lambda return (int)roundf(x);
 
-
-
-binary_sensor:
-
-  # Big Door open
+text_sensor:
   - platform: homeassistant
-    id: big_door_open
-    entity_id: cover.big_door
-    trigger_on_initial_state: true
-    on_state:
-      then:
-        lvgl.widget.update:
-          id: big_door_open_button
+    entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+    id: bbq_hvac_mode
+    on_value:
+      - lvgl.label.update:
+          id: hvac_mode_label
+          text: !lambda return x;
+      - lvgl.widget.update:
+          id: heat_mode_button
           state:
-            checked: !lambda return x == 'open';
-
-  # Big Door closed
-  - platform: homeassistant
-    id: big_door_closed
-    entity_id: cover.big_door
-    trigger_on_initial_state: true
-    on_state:
-      then:
-        lvgl.widget.update:
-          id: big_door_closed_button
-          state:
-            checked: !lambda return x != 'open';
-
-  # Office Features Scene
-  - platform: homeassistant
-    id: office_scene_features
-    entity_id: switch.office_features_stateful_scene
-    trigger_on_initial_state: true
-    on_state:
-      then:
-        lvgl.widget.update:
-          id: office_scene_features_button
-          state:
-            checked: !lambda return x;
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+            checked: !lambda return x == "heat";
