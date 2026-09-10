@@ -53,6 +53,7 @@ api:
 
 # Enable logging
 logger:
+  level: DEBUG
 
 # Power management
 esp_ldo:
