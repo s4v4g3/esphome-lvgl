@@ -137,7 +137,6 @@ lvgl:
                         text: $power
                         align: center
                   on_click:
-                    - logger.log: "LVGL: power button was successfully clicked!"
                     - homeassistant.service:
                         service: climate.set_hvac_mode
                         data:
@@ -149,7 +148,6 @@ lvgl:
                   y: 530
                   width: 150px
                   height: 55px
-                  checkable: true
                   styles: control
                   widgets:
                     - label:
@@ -157,7 +155,6 @@ lvgl:
                         text: $fire
                         align: center
                   on_click:
-                    - logger.log: "LVGL: heat button was successfully clicked!"
                     - homeassistant.service:
                         service: climate.set_hvac_mode
                         data:
