@@ -23,7 +23,7 @@ sensor:
             args: [ 'x' ]
 
   - platform: homeassistant
-    entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+    entity_id: ${climate_entity}
     id: bbq_target_temperature
     attribute: temperature
     on_value:
@@ -38,7 +38,7 @@ sensor:
 
 text_sensor:
   - platform: homeassistant
-    entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
+    entity_id: ${climate_entity}
     id: bbq_hvac_mode
     on_value:
       - lvgl.label.update:
