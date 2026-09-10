@@ -141,7 +141,7 @@ lvgl:
                         service: climate.set_hvac_mode
                         data:
                           entity_id: climate.bbq_esphome_esphome_bbq_pit_controller
-                          hvac_mode: off
+                          hvac_mode: 'off'
               - button:
                   id: heat_mode_button
                   x: 534
