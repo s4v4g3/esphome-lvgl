@@ -6,7 +6,7 @@ sensor:
       - lvgl.label.update:
           id: pit_temperature_label
           text:
-            format: "%.1f°"
+            format: "%.0f°"
             args: [ 'x' ]
       - lvgl.arc.update:
           id: pit_temperature_arc
@@ -30,7 +30,7 @@ sensor:
       - lvgl.label.update:
           id: target_temperature_label
           text:
-            format: "%.1f°"
+            format: "%.0f°"
             args: [ 'x' ]
       - lvgl.arc.update:
           id: target_temperature_arc
@@ -43,7 +43,7 @@ text_sensor:
     on_value:
       - lvgl.label.update:
           id: hvac_mode_label
-          text: !lambda return x;
+          text: !lambda return x.upper();
       - lvgl.widget.update:
           id: heat_mode_button
           state:

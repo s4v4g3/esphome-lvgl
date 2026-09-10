@@ -5,7 +5,7 @@ lvgl:
   top_layer:
     widgets:
       - label:
-          text: "BBQ PIT"
+          text: "BBQ Pit Controller"
           text_font: clockbar_font
           align: top_left
           x: 12
@@ -50,7 +50,7 @@ lvgl:
               - arc:
                   id: target_temperature_arc
                   # ---------
-                  x: 300
+                  x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
                   y: 92
                   width: 430px
                   height: 430px
@@ -79,7 +79,7 @@ lvgl:
               - arc:
                   id: pit_temperature_arc
                   # ---------
-                  x: 300
+                  x: 297
                   y: 92
                   width: 430px
                   height: 430px
@@ -99,24 +99,18 @@ lvgl:
                   adjustable: false
               - label:
                   id: target_temperature_label
-                  text: "--.-°"
+                  text: "--°"
                   text_font: statistics_font
                   text_color: 0xFFFFFF
                   align: center
                   y: 6
               - label:
                   id: pit_temperature_label
-                  text: "--.-°"
+                  text: "--°"
                   text_font: label_font
                   text_color: 0x64D6C5
                   align: center
                   y: 72
-              - label:
-                  text: "PIT"
-                  text_font: clockbar_font
-                  text_color: 0x8CA0AE
-                  x: 95
-                  y: 185
               - label:
                   id: fan_output_label
                   text: "--%"
@@ -128,7 +122,7 @@ lvgl:
                   text: "Fan Speed"
                   text_font: clockbar_font
                   text_color: 0x8CA0AE
-                  x: 802
+                  x: 790
                   y: 285
               - button:
                   id: off_mode_button
