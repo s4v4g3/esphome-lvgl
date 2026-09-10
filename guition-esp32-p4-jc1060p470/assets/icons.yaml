@@ -26,6 +26,7 @@ font:
       "\U000F06D9",  # mdi-garage
       "\U000F0238",  # mdi-fire
       "\U000F0210",  # mdi-fan
+      "\U000F0425",  # mdi-power
       ]
 
 # Map icons to names
@@ -50,4 +51,5 @@ substitutions:
   garage_closed:  "\U000F06D9"
   fire:           "\U000F0238"
   fan:            "\U000F0210"
+  power:          "\U000F0425"
 

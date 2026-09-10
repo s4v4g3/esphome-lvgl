@@ -130,7 +130,6 @@ lvgl:
                   y: 530
                   width: 150px
                   height: 55px
-                  checkable: true
                   styles: control
                   widgets:
                     - label:
