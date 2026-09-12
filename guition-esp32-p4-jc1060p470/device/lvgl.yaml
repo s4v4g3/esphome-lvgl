@@ -92,10 +92,11 @@ lvgl:
                   arc_width: 0
                   arc_color: 0x000000
                   indicator:
-                    arc_color: 0x8CA0AE
-                    arc_width: 5
+                    arc_color: 0xFFA0AE
+                    arc_width: 6
                   knob:
                     bg_color: 0x8CA0AE
+                    border_width: 2
                   adjustable: false
               - label:
                   id: target_temperature_label
