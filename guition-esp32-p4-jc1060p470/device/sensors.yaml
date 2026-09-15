@@ -55,5 +55,5 @@ text_sensor:
           id: target_temperature_arc
           indicator:
             arc_color: !lambda |-
-              if (x == "heat") return (lv_color_t)0xE58A32;
-              return (lv_color_t)0x8CA0AE;
+              if (x == "heat") return lv_color_hex(0xE58A32);
+              return lv_color_hex(0x8CA0AE);
