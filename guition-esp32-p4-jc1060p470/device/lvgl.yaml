@@ -79,10 +79,10 @@ lvgl:
               - arc:
                   id: pit_temperature_arc
                   # ---------
-                  x: 297
+                  x: 294
                   y: 92
-                  width: 430px
-                  height: 430px
+                  width: 436px
+                  height: 436px
                   min_value: 0
                   max_value: 400
                   value: 0
@@ -93,10 +93,10 @@ lvgl:
                   arc_color: 0x000000
                   indicator:
                     arc_color: 0xFF1010
-                    arc_width: 6
+                    arc_width: 12
                   knob:
                     bg_color: 0xFF1010
-                    border_width: 2
+                    border_width: 4
                   adjustable: false
               - label:
                   id: target_temperature_label
