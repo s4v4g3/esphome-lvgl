@@ -56,4 +56,4 @@ text_sensor:
           indicator:
             arc_color: !lambda |-
               if (x == "heat") return lv_color_hex(0xE58A32);
-              return lv_color_hex(0x8CA0AE);
+              return lv_color_hex(0x48494B);
