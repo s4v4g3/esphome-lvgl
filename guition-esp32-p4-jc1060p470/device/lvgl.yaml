@@ -48,7 +48,6 @@ lvgl:
                   align: top_mid
                   y: 62
               - arc:
-                  hidden: false
                   id: target_temperature_arc
                   # ---------
                   x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
@@ -77,46 +76,7 @@ lvgl:
                           entity_id: ${climate_entity}
                           hvac_mode: heat
                           temperature: !lambda return x;
-              - meter:
-                  x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
-                  y: 92
-                  width: 430px
-                  height: 430px
-                  scales:
-                    - range_from: 0 # scale for the value labels
-                      range_to: 400
-                      angle_range: 240
-                      rotation: 150
-                      ticks:
-                        width: 1
-                        count: 51
-                        length: 10
-                        color: 0x000000
-                        major:
-                          stride: 5
-                          width: 2
-                          length: 10
-                          color: 0x404040
-                          label_gap: 10
-                      indicators:
-                        - tick_style:
-                            start_value: -10
-                            end_value: 40
-                            color_start: 0x0000bd
-                            color_end: 0xbd0000
-                            width: 1
-                    - range_from: 0 # scale for the needle value
-                      range_to: 400
-                      angle_range: 240
-                      rotation: 150
-                      indicators:
-                        - line:
-                            id: pit_temperature_needle
-                            width: 2
-                            color: 0xFF0000
-                            length: 96%
               - arc:
-                  hidden: true
                   id: pit_temperature_arc
                   # ---------
                   x: 294
