@@ -45,11 +45,6 @@ lvgl:
                   y: 92
                   width: 430px
                   height: 430px
-                  pad_all: 0 # keep the scale radius identical to the overlaid arc
-                  border_width: 0
-                  ticks:
-                    text_font: meter_tick_label_font # major tick value label size
-                    text_color: 0xC7D0D8
                   scales:
                     - range_from: 0 # scale for the value labels
                       range_to: 400
@@ -65,7 +60,7 @@ lvgl:
                           width: 2
                           length: 10
                           color: 0x404040
-                          label_gap: 14
+                          label_gap: 10
                       indicators:
                         - tick_style:
                             start_value: -10
@@ -99,8 +94,6 @@ lvgl:
                   y: 92
                   width: 430px
                   height: 430px
-                  pad_all: 0 # keep the arc radius identical to the overlaid meter
-                  border_width: 0
                   min_value: 0
                   max_value: 400 # Maximum target temperature for the BBQ pit -- should be the same for the pit temperature arc
                   value: 110
