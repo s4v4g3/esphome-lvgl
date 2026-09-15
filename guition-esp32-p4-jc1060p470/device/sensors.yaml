@@ -51,3 +51,9 @@ text_sensor:
           id: heat_mode_button
           state:
             checked: !lambda return x == "heat";
+      - lvgl.arc.update:
+          id: target_temperature_arc
+          indicator:
+            arc_color: !lambda |-
+              if (x == "heat") return 0xE58A32;
+              return 0x8CA0AE;
