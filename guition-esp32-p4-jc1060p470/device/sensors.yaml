@@ -11,6 +11,9 @@ sensor:
       - lvgl.arc.update:
           id: pit_temperature_arc
           value: !lambda return (int)roundf(x);
+      - lvgl.indicator.update:
+          id: pit_temperature_needle
+          value: !lambda return (int)roundf(x);
 
   - platform: homeassistant
     entity_id: sensor.bbq_esphome_esphome_bbq_pit_fan_output
