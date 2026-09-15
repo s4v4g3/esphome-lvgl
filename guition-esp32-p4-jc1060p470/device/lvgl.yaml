@@ -95,8 +95,11 @@ lvgl:
                     arc_color: 0xFF1010
                     arc_width: 12
                   knob:
-                    bg_color: 0xFF1010
-                    border_width: 4
+                    bg_color: 0xFFFFFF
+                    border_width: 3
+                    radius: 0
+                    bg_opa: COVER
+
                   adjustable: false
               - label:
                   id: target_temperature_label
