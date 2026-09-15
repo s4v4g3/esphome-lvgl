@@ -48,8 +48,8 @@ lvgl:
                   scales:
                     - range_from: 0 # scale for the value labels
                       range_to: 400
-                      angle_range: 270 # must match arc start_angle/end_angle sweep
-                      rotation: 135 # must match arc start_angle
+                      angle_range: 240
+                      rotation: 150
                       ticks:
                         width: 1
                         count: 51
@@ -70,8 +70,8 @@ lvgl:
                             width: 1
                     - range_from: 0 # scale for the needle value
                       range_to: 400
-                      angle_range: 270 # must match arc start_angle/end_angle sweep
-                      rotation: 135 # must match arc start_angle
+                      angle_range: 240
+                      rotation: 150
                       indicators:
                         - line:
                             id: pit_temperature_needle
@@ -117,7 +117,6 @@ lvgl:
                           hvac_mode: heat
                           temperature: !lambda return x;
               
-              # disabled in favor of the meter
               - arc:
                   hidden: true
                   id: pit_temperature_arc
@@ -145,22 +144,20 @@ lvgl:
                     border_color: 0xFFFFFF  # White border ring
 
                   adjustable: false
-              
-              
               - label:
                   id: target_temperature_label
                   text: "--°"
-                  text_font: temp_target_font
+                  text_font: statistics_font
                   text_color: 0xFFFFFF
                   align: center
-                  y: 0
+                  y: 6
               - label:
                   id: pit_temperature_label
                   text: "--°"
-                  text_font: temp_current_font
+                  text_font: label_font
                   text_color: 0x64D6C5
                   align: center
-                  y: 90
+                  y: 72
               - label:
                   id: fan_output_label
                   text: "--%"
