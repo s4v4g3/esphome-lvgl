@@ -40,6 +40,43 @@ lvgl:
             border_width: 0
             pad_all: 0
             widgets:
+              - label:
+                  id: hvac_mode_label
+                  text: "off"
+                  text_font: label_font
+                  text_color: 0xAEB8C2
+                  align: top_mid
+                  y: 62
+              - arc:
+                  hidden: false
+                  id: target_temperature_arc
+                  # ---------
+                  x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
+                  y: 92
+                  width: 430px
+                  height: 430px
+                  min_value: 0
+                  max_value: 400 # Maximum target temperature for the BBQ pit -- should be the same for the pit temperature arc
+                  value: 110
+                  start_angle: 135
+                  end_angle: 45
+                  # -----------  
+                  arc_width: 18
+                  arc_color: 0x3B444D
+                  indicator:
+                    arc_color: 0xE58A32
+                    arc_width: 18
+                  knob:
+                    bg_color: 0xFFFFFF
+                    border_width: 4
+                  adjustable: true
+                  on_change:
+                    - homeassistant.action:
+                        action: climate.set_temperature
+                        data:
+                          entity_id: ${climate_entity}
+                          hvac_mode: heat
+                          temperature: !lambda return x;
               - meter:
                   x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
                   y: 92
@@ -78,45 +115,6 @@ lvgl:
                             width: 2
                             color: 0xFF0000
                             length: 96%
-              
-              - label:
-                  id: hvac_mode_label
-                  text: "off"
-                  text_font: label_font
-                  text_color: 0xAEB8C2
-                  align: top_mid
-                  y: 62
-              - arc:
-                  hidden: false
-                  id: target_temperature_arc
-                  # ---------
-                  x: 297 # screen_width/2 - arc_width/2 = 1024/2 - 430/2
-                  y: 92
-                  width: 430px
-                  height: 430px
-                  min_value: 0
-                  max_value: 400 # Maximum target temperature for the BBQ pit -- should be the same for the pit temperature arc
-                  value: 110
-                  start_angle: 135
-                  end_angle: 45
-                  # -----------  
-                  arc_width: 18
-                  arc_color: 0x3B444D
-                  indicator:
-                    arc_color: 0xE58A32
-                    arc_width: 18
-                  knob:
-                    bg_color: 0xFFFFFF
-                    border_width: 4
-                  adjustable: true
-                  on_change:
-                    - homeassistant.action:
-                        action: climate.set_temperature
-                        data:
-                          entity_id: ${climate_entity}
-                          hvac_mode: heat
-                          temperature: !lambda return x;
-              
               - arc:
                   hidden: true
                   id: pit_temperature_arc
